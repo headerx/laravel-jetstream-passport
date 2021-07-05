@@ -1,4 +1,4 @@
-# Passport and OAuth2 support for laravel's jetstream starter kit (Livewire)
+# Passport and OAuth2 support for Laravel's Jetstream starter kit (Livewire)
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/headerx/laravel-jetstream-passport.svg?style=flat-square)](https://packagist.org/packages/headerx/laravel-jetstream-passport)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/headerx/laravel-jetstream-passport/run-tests?label=tests)](https://github.com/headerx/laravel-jetstream-passport/actions?query=workflow%3Arun-tests+branch%3Amain)
