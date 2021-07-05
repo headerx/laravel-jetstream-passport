@@ -2,18 +2,16 @@
 
 namespace HeaderX\JetstreamPassport;
 
-use Spatie\LaravelPackageTools\Package;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
 use HeaderX\JetstreamPassport\Commands\JetstreamPassportCommand;
 use HeaderX\JetstreamPassport\Http\Livewire\ApiTokenManager;
 use HeaderX\JetstreamPassport\Http\Livewire\OAuthClientManager;
 use Illuminate\Support\Facades\Blade;
-use Laravel\Passport\Passport;
 use Livewire\Livewire;
+use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class JetstreamPassportServiceProvider extends PackageServiceProvider
 {
-
     public function bootingPackage(): void
     {
         Blade::component('jetstream-passport::components.form-help-text', 'jetpass-form-help-text');

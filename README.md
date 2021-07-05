@@ -1,4 +1,4 @@
-# Passport and OAuth2 support for laravel's jetstream starter kit (Livewire)
+# Passport and OAuth2 support for Laravel's Jetstream starter kit (Livewire)
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/headerx/laravel-jetstream-passport.svg?style=flat-square)](https://packagist.org/packages/headerx/laravel-jetstream-passport)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/headerx/laravel-jetstream-passport/run-tests?label=tests)](https://github.com/headerx/laravel-jetstream-passport/actions?query=workflow%3Arun-tests+branch%3Amain)
@@ -16,6 +16,7 @@ composer require laravel/jetstream
 ```bash
 php artisan jetstream:install livewire
 ```
+See [Docs](https://jetstream.laravel.com/2.x/installation.html) for more info.
 
 2. Install this package:
 
@@ -96,7 +97,7 @@ php artisan vendor:publish --provider="HeaderX\JetstreamPassport\JetstreamPasspo
 ```
 
 
-7. finally, in one of you application's service providers, add passport routes and define your tokens' scopes, and set up jetstream to use the passport scopes, example:
+7. finally, in one of you application's service providers, add passport routes and define scopes for your passport tokens, and set up jetstream to use them, example:
 
 ```php
 <?php
