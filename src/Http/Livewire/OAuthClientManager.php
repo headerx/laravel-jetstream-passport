@@ -218,6 +218,6 @@ class OAuthClientManager extends Component
      */
     public function render()
     {
-        return view('jetstream-passport::client-manager');
+        return view('jetstream-passport::oauth-client-manager');
     }
 }
