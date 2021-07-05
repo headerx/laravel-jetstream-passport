@@ -16,6 +16,7 @@ composer require laravel/jetstream
 ```bash
 php artisan jetstream:install livewire
 ```
+See [Docs](https://jetstream.laravel.com/2.x/installation.html) for more info.
 
 2. Install this package:
 
@@ -96,7 +97,7 @@ php artisan vendor:publish --provider="HeaderX\JetstreamPassport\JetstreamPasspo
 ```
 
 
-7. finally, in one of you application's service providers, add passport routes and define your tokens' scopes, and set up jetstream to use the passport scopes, example:
+7. finally, in one of you application's service providers, add passport routes and define scopes for your passport tokens, and set up jetstream to use them, example:
 
 ```php
 <?php
