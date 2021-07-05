@@ -1,24 +1,27 @@
 {
-    "name": "vendor_slug/package_slug",
-    "description": ":package_description",
+    "name": "headerx/laravel-jetstream-passport",
+    "description": "Passport and OAuth2 support for laravel's jetstream starter kit (Livewire)",
     "keywords": [
-        ":vendor_name",
+        "headerx",
         "laravel",
-        "package_slug"
+        "laravel-jetstream-passport"
     ],
-    "homepage": "https://github.com/vendor_slug/package_slug",
+    "homepage": "https://github.com/headerx/laravel-jetstream-passport",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "inmanturbo",
+            "email": "inman.turbo@gmail.com",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": "^8.0",
+        "php": "^7.4|^8.0",
         "spatie/laravel-package-tools": "^1.4.3",
-        "illuminate/contracts": "^8.37"
+        "illuminate/contracts": "^8.37",
+        "laravel/jetstream": "^2.3",
+        "laravel/passport": "^10.1",
+        "livewire/livewire": "^2.5"
     },
     "require-dev": {
         "brianium/paratest": "^6.2",
@@ -30,13 +33,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "HeaderX\\JetstreamPassport\\": "src",
+            "HeaderX\\JetstreamPassport\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "HeaderX\\JetstreamPassport\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -50,10 +53,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "HeaderX\\JetstreamPassport\\JetstreamPassportServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\SkeletonFacade"
+                "JetstreamPassport": "HeaderX\\JetstreamPassport\\JetstreamPassportFacade"
             }
         }
     },

@@ -1,63 +1,163 @@
-# :package_description
+# Passport and OAuth2 support for laravel's jetstream starter kit (Livewire)
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/vendor_slug/package_slug.svg?style=flat-square)](https://packagist.org/packages/vendor_slug/package_slug)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/vendor_slug/package_slug/run-tests?label=tests)](https://github.com/vendor_slug/package_slug/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/vendor_slug/package_slug/Check%20&%20fix%20styling?label=code%20style)](https://github.com/vendor_slug/package_slug/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/vendor_slug/package_slug.svg?style=flat-square)](https://packagist.org/packages/vendor_slug/package_slug)
-
----
-This repo can be used as to scaffold a Laravel package. Follow these steps to get started:
-
-1. Press the "Use template" button at the top of this repo to create a new repo with the contents of this skeleton
-2. Run "./configure-skeleton.sh" to run a script that will replace all placeholders throughout all the files
-3. Remove this block of text.
-4. Have fun creating your package.
-5. If you need help creating a package, consider picking up our <a href="https://laravelpackage.training">Laravel Package Training</a> video course.
----
-
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
-
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/:package_name.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/:package_name)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/headerx/laravel-jetstream-passport.svg?style=flat-square)](https://packagist.org/packages/headerx/laravel-jetstream-passport)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/headerx/laravel-jetstream-passport/run-tests?label=tests)](https://github.com/headerx/laravel-jetstream-passport/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/headerx/laravel-jetstream-passport/Check%20&%20fix%20styling?label=code%20style)](https://github.com/headerx/laravel-jetstream-passport/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/headerx/laravel-jetstream-passport.svg?style=flat-square)](https://packagist.org/packages/headerx/laravel-jetstream-passport)
 
 ## Installation
 
-You can install the package via composer:
+1. Install Jetstream with livewire:
 
 ```bash
-composer require vendor_slug/package_slug
+composer require laravel/jetstream
 ```
 
-You can publish and run the migrations with:
+```bash
+php artisan jetstream:install livewire
+```
+
+2. Install this package:
+
 
 ```bash
-php artisan vendor:publish --provider="VendorName\Skeleton\SkeletonServiceProvider" --tag="package_slug-migrations"
+composer require headerx/laravel-jetstream-passport
+```
+
+```bash
 php artisan migrate
 ```
 
-You can publish the config file with:
 ```bash
-php artisan vendor:publish --provider="VendorName\Skeleton\SkeletonServiceProvider" --tag="package_slug-config"
+php artisan jetstream-passport:install
 ```
 
-This is the contents of the published config file:
+3. in your user model replace the  `Laravel\Sanctum\HasApiTokens` trait with `Laravel\Passport\HasApiTokens`:
+   
+```diff
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Fortify\TwoFactorAuthenticatable;
+use Laravel\Jetstream\HasProfilePhoto;
+- use Laravel\Sanctum\HasApiTokens;
++ use Laravel\Passport\HasApiTokens;
+
+class User extends Authenticatable
+{
+    use HasApiTokens;
+...
+}
+
+```
+
+4. in config/auth.php set the `api.driver` to `passport`:
 
 ```php
-return [
-];
+...
+    'guards' => [
+        'web' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+
+        'api' => [
+            'driver' => 'passport',
+            'provider' => 'users',
+            'hash' => false,
+        ],
+    ],
+...
 ```
 
-## Usage
+5. replace the contents of resources/views/vendor/passport/authorize.blade.php with the following:
+
+```blade
+
+@include('jetstream-passport::authorize')
+
+```
+
+6. replace the contents of resources/views/api/index.blade.php with the following:
+
+```blade
+
+@include('jetstream-passport::index')
+
+```
+
+You can publish the views with:
+```bash
+php artisan vendor:publish --provider="HeaderX\JetstreamPassport\JetstreamPassportServiceProvider" --tag="jetstream-passport-views"
+```
+
+
+7. finally, in one of you application's service providers, add passport routes and define your tokens' scopes, and set up jetstream to use the passport scopes, example:
 
 ```php
-$skeleton = new VendorName\Skeleton();
-echo $skeleton->echoPhrase('Hello, Spatie!');
+<?php
+// app/Providers/AuthServiceProvider.php
+namespace App\Providers;
+
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
+use Laravel\Jetstream\Jetstream;
+use Laravel\Passport\Passport;
+
+class AuthServiceProvider extends ServiceProvider
+{
+    /**
+     * The policy mappings for the application.
+     *
+     * @var array
+     */
+    protected $policies = [
+        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+    ];
+
+    /**
+     * Register any authentication / authorization services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->registerPolicies();
+
+
+        // add passport routes
+        Passport::routes(); 
+
+        // define scopes for passport tokens
+        Passport::tokensCan([
+            'create' => 'Create resources',
+            'read' => 'Read Resources',
+            'update' => 'Update Resources',
+            'delete' => 'Delete Resources',
+        ]);
+
+        // default scope for passport tokens
+        Passport::setDefaultScope([
+            // 'create',
+            'read',
+            // 'update',
+            // 'delete',
+        ]);
+
+        // same as passport default above
+        Jetstream::defaultApiTokenPermissions(['read']);
+
+        // use passport scopes for jetstream token permissions
+        Jetstream::permissions(Passport::scopeIds());
+    }
+}
 ```
+
+
 
 ## Testing
 
@@ -79,7 +179,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
+- [inmanturbo](https://github.com/inmanturbo)
 - [All Contributors](../../contributors)
 
 ## License
