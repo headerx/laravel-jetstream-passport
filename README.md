@@ -16,7 +16,7 @@ composer require laravel/jetstream
 ```bash
 php artisan jetstream:install livewire
 ```
-See [Docs](https://jetstream.laravel.com/2.x/installation.html) for more info.
+See [Jetstream Docs](https://jetstream.laravel.com/2.x/installation.html) for more info.
 
 2. Install this package:
 
