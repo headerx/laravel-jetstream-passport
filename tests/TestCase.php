@@ -2,10 +2,9 @@
 
 namespace HeaderX\JetstreamPassport\Tests;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Orchestra\Testbench\TestCase as Orchestra;
 use HeaderX\JetstreamPassport\JetstreamPassportServiceProvider;
 use Livewire\LivewireServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {
