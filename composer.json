@@ -16,12 +16,7 @@
         }
     ],
     "require": {
-        "php": "^7.4|^8.0",
         "spatie/laravel-package-tools": "^1.4.3",
-        "illuminate/contracts": "^8.37|^9.0",
-        "laravel/jetstream": "^2.6",
-        "laravel/passport": "^10.3",
-        "livewire/livewire": "^2.5"
     },
     "require-dev": {
         "brianium/paratest": "^6.2",
