@@ -1,6 +1,6 @@
 <x-guest-layout>
 
-    <div class="py-3 px-6 mb-0 bg-blue-dark border-b-1 border-grey-light text-grey-lightest text-center">
+    <div class="fixed top-0 min-w-full px-6 py-3 mb-0 text-center bg-white border-b-1 border-grey-light text-grey-lightest dark:bg-gray-800">
         Authorization Request
     </div>
 
@@ -11,7 +11,7 @@
 
 
 
-        <div class="mb-4 text-sm text-gray-600">
+        <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
             <p><strong>{{ $client->name }}</strong> is requesting permission to access your account.</p>
         </div>
 
@@ -40,7 +40,7 @@
                 <input type="hidden" name="auth_token" value="{{ $authToken }}">
 
                 <div class="flex justify-end mt-4">
-                    <x-button class="ml-4 bg-red-500">
+                    <x-button class="ml-4 bg-red-500 dark:bg-red-800">
                         {{ __('Cancel') }}
                     </x-button>
                 </div>
