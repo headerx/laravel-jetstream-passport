@@ -8,16 +8,25 @@
 
 1. Install Jetstream with livewire:
 
+Using Laravel installer
+
+```bash
+laravel new jetpass-app --stack=livewire --jet --dark --api --dev
+```
+
+Using Composer
+
 ```bash
 composer require laravel/jetstream
 ```
 
 ```bash
-php artisan jetstream:install livewire
+php artisan jetstream:install livewire --api
 ```
-See [Docs](https://jetstream.laravel.com/2.x/installation.html) for more info.
 
-2. Install this package:
+See [Docs](https://jetstream.laravel.com/installation.html) for more info.
+
+1. Install this package:
 
 
 ```bash
