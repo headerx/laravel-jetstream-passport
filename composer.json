@@ -69,6 +69,7 @@
         "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true,
+            "pestphp/pest-plugin-arch": true,
             "phpstan/extension-installer": true
         }
     },
