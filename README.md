@@ -183,6 +183,35 @@ Route::get('/user', function (Request $request) {
 +})->middleware('auth:api');
 ```
 
+9. Lastly, for postcss processing of styles, you can edit tailwind.config.js to include '.vendor/headerx/laravel-jetstream-passport/resources/views/**/*.blade.php'
+
+```js
+import defaultTheme from 'tailwindcss/defaultTheme';
+import forms from '@tailwindcss/forms';
+import typography from '@tailwindcss/typography';
+
+/** @type {import('tailwindcss').Config} */
+export default {
+    content: [
+        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
+        '.vendor/headerx/laravel-jetstream-passport/resources/views/**/*.blade.php',
+        './vendor/laravel/jetstream/**/*.blade.php',
+        './storage/framework/views/*.php',
+        './resources/views/**/*.blade.php',
+    ],
+
+    theme: {
+        extend: {
+            fontFamily: {
+                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+            },
+        },
+    },
+
+    plugins: [forms, typography],
+};
+```
+
 ## Testing
 
 ```bash
