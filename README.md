@@ -179,7 +179,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
--})->middleware(Authenticate::using('passport'));
+-})->middleware(Authenticate::using('sanctum'));
 +})->middleware('auth:api');
 ```
 
