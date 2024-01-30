@@ -100,46 +100,48 @@ class User extends Authenticatable
 ```
 
 You can publish the views with:
+
 ```bash
 php artisan vendor:publish --provider="HeaderX\JetstreamPassport\JetstreamPassportServiceProvider" --tag="jetstream-passport-views"
 ```
 
-
-7. finally, in one of you application's service providers, add passport routes and define scopes for your passport tokens, and set up jetstream to use them, example:
+   finally, in one of you application's service providers, add passport routes and define scopes for your passport tokens, and set up jetstream to use them, example:
 
 ```php
 <?php
-// app/Providers/AuthServiceProvider.php
+// app/Providers/JetstreamServiceProvider
 namespace App\Providers;
 
-use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Gate;
+// ...
+use Illuminate\Support\ServiceProvider;
 use Laravel\Jetstream\Jetstream;
 use Laravel\Passport\Passport;
 
-class AuthServiceProvider extends ServiceProvider
+class JetstreamServiceProvider extends ServiceProvider
 {
     /**
-     * The policy mappings for the application.
-     *
-     * @var array
+     * Register any application services.
      */
-    protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
-    ];
+    public function register(): void
+    {
+        //
+    }
 
     /**
-     * Register any authentication / authorization services.
-     *
-     * @return void
+     * Bootstrap any application services.
      */
-    public function boot()
+    public function boot(): void
     {
-        $this->registerPolicies();
+        $this->configurePermissions();
 
+        // ...
+    }
 
-        // add passport routes
-        Passport::routes(); 
+    /**
+     * Configure the roles and permissions that are available within the application.
+     */
+    protected function configurePermissions(): void
+    {
 
         // define scopes for passport tokens
         Passport::tokensCan([
@@ -166,7 +168,20 @@ class AuthServiceProvider extends ServiceProvider
 }
 ```
 
+Now you can also edit `routes/api.php`
 
+```diff
+<?php
+
+use Illuminate\Auth\Middleware\Authenticate;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/user', function (Request $request) {
+    return $request->user();
+-})->middleware(Authenticate::using('passport'));
++})->middleware('auth:api');
+```
 
 ## Testing
 
