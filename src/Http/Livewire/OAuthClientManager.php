@@ -136,9 +136,7 @@ class OAuthClientManager extends Component
     /**
      * Allow the given Client to be managed.
      *
-     * @param string  $clientId
-     * @param ClientRepository $clients
-     *
+     * @param  string  $clientId
      * @return void
      */
     public function manageClient($managingClientId, ClientRepository $clients)
@@ -159,7 +157,6 @@ class OAuthClientManager extends Component
     /**
      * Update the Client.
      *
-     * @param ClientRepository $clients
      *
      * @return void
      */
@@ -173,8 +170,6 @@ class OAuthClientManager extends Component
 
     /**
      * Confirm that the given API token should be deleted.
-     *
-     * @return void
      */
     public function confirmDeletion($clientIdBeingDeleted): void
     {
@@ -186,7 +181,6 @@ class OAuthClientManager extends Component
     /**
      * Delete the Client.
      *
-     * @param ClientRepository $clients
      *
      * @return void
      */
