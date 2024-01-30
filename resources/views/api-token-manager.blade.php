@@ -66,7 +66,7 @@
                     <div class="space-y-6">
                         @foreach ($this->user->tokens->sortBy('name') as $token)
                             <div class="flex items-center justify-between">
-                                <div>
+                                <div class="text-sm text-gray-400">
                                     {{ $token->name ?? $token->client->name }}
                                 </div>
 
@@ -139,7 +139,7 @@
                 @foreach (Laravel\Jetstream\Jetstream::$permissions as $permission)
                     <label class="flex items-center">
                         <x-checkbox wire:model.defer="updateApiTokenForm.scopes" :value="$permission" />
-                        <span class="ml-2 text-sm text-gray-600">{{ $permission }}</span>
+                        <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">{{ $permission }}</span>
                     </label>
                 @endforeach
             </div>
