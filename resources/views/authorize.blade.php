@@ -4,9 +4,9 @@
         Authorization Request
     </div>
 
-    <x-jet-authentication-card>
+    <x-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            <x-authentication-card-logo />
         </x-slot>
 
 
@@ -28,7 +28,7 @@
             </div>
         @endif
 
-        <x-jet-validation-errors class="mb-4" />
+        <x-validation-errors class="mb-4" />
         <div class="flex items-center justify-end mt-4">
 
             <form method="POST" action="{{ route('passport.authorizations.deny') }}">
@@ -40,9 +40,9 @@
                 <input type="hidden" name="auth_token" value="{{ $authToken }}">
 
                 <div class="flex justify-end mt-4">
-                    <x-jet-button class="ml-4 bg-red-500">
+                    <x-button class="ml-4 bg-red-500">
                         {{ __('Cancel') }}
-                    </x-jet-button>
+                    </x-button>
                 </div>
             </form>
 
@@ -53,13 +53,13 @@
                 <input type="hidden" name="client_id" value="{{ $client->id }}">
                 <input type="hidden" name="auth_token" value="{{ $authToken }}">
                 <div class="flex justify-end mt-4">
-                    <x-jet-button class="ml-4">
+                    <x-button class="ml-4">
                         {{ __('Authorize') }}
-                    </x-jet-button>
+                    </x-button>
                 </div>
             </form>
 
         </div>
 
-    </x-jet-authentication-card>
+    </x-authentication-card>
 </x-guest-layout>
