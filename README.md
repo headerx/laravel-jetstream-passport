@@ -105,7 +105,7 @@ You can publish the views with:
 php artisan vendor:publish --provider="HeaderX\JetstreamPassport\JetstreamPassportServiceProvider" --tag="jetstream-passport-views"
 ```
 
-   finally, in one of you application's service providers, add passport routes and define scopes for your passport tokens, and set up jetstream to use them, example:
+7. finally, in one of you application's service providers, add passport routes and define scopes for your passport tokens, and set up jetstream to use them, example:
 
 ```php
 <?php
@@ -168,7 +168,7 @@ class JetstreamServiceProvider extends ServiceProvider
 }
 ```
 
-Now you can also edit `routes/api.php`
+8. Now you can also edit `routes/api.php`
 
 ```diff
 <?php
