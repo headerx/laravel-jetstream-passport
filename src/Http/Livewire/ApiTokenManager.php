@@ -103,7 +103,7 @@ class ApiTokenManager extends Component
         $this->createApiTokenForm['name'] = '';
         $this->createApiTokenForm['scopes'] = Jetstream::$defaultPermissions;
 
-        $this->emit('created');
+        $this->dispatch('created');
     }
 
     /**
@@ -118,7 +118,7 @@ class ApiTokenManager extends Component
 
         $this->plainTextToken = $token;
 
-        $this->dispatchBrowserEvent('showing-token-modal');
+        $this->dispatch('showing-token-modal');
     }
 
     /**

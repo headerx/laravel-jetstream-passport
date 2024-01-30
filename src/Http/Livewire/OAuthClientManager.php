@@ -113,7 +113,7 @@ class OAuthClientManager extends Component
         $this->createForm['redirect'] = '';
         $this->createForm['confidential'] = true;
 
-        $this->emit('created');
+        $this->dispatch('created');
     }
 
     /**
@@ -130,7 +130,7 @@ class OAuthClientManager extends Component
         $this->clientSecret = $clientSecret;
         $this->newClientId = $newClientId;
 
-        $this->dispatchBrowserEvent('showing-secret-modal');
+        $this->dispatch('showing-secret-modal');
     }
 
     /**
@@ -151,7 +151,7 @@ class OAuthClientManager extends Component
         $this->updateForm['redirect'] = $client->redirect;
         $this->updateForm['confidential'] = true;
 
-        $this->dispatchBrowserEvent('showing-manage-client-modal');
+        $this->dispatch('showing-manage-client-modal');
     }
 
     /**
