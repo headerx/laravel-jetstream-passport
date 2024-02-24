@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Laravel\Jetstream\Jetstream;
 use Laravel\Passport\Passport;
 
 class PassportServiceProvider extends ServiceProvider
