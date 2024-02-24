@@ -69,7 +69,7 @@ jobs:
       - name: Install NPM dependencies
         run: npm install
 
-      - name: Comple NPM assets
+      - name: Compile assets
         run: npm run dev
 
       - name: Execute tests
