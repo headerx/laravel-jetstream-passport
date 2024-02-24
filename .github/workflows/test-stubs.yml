@@ -44,7 +44,7 @@ jobs:
       
       - name: Setup Laravel
         run: |
-          composer create-project laravel/laravel:11 .
+          composer create-project laravel/laravel:11.x-dev .
           composer require laravel/jetstream:@dev --no-interaction --no-update
           compsoser require headerx/laravel-jetstream-passport:@dev --no-interaction --no-update
           composer config repositories.laravel-jetstream-passport '{"type": "path", "url": "laravel-jetstream-passport"}' --file composer.json
