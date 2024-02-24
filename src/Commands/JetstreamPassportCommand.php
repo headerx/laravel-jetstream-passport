@@ -18,7 +18,7 @@ class JetstreamPassportCommand extends Command
         $this->call('passport:install', ['--uuids']);
         $this->call('passport:client', ['--personal' => true, '--name' => 'Laravel Personal Access Client']);
 
-        $this->replaceInFile('Laravel\\Sanctum\\HasApiTokens' , 'Laravel\\Passport\\HasApiTokens', app_path('Models/User.php'));
+        $this->replaceInFile('Laravel\\Sanctum\\HasApiTokens', 'Laravel\\Passport\\HasApiTokens', app_path('Models/User.php'));
 
         $this->copyFiles();
     }
