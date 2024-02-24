@@ -1,0 +1,79 @@
+name: run-tests
+
+on:
+  push:
+    paths:
+      - '**.php'
+      - '.github/workflows/run-tests.yml'
+      - 'phpunit.xml.dist'
+      - 'composer.json'
+      - 'composer.lock'
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 5
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        php: [8.3, 8.2]
+        laravel: [10.*]
+        stability: [prefer-lowest, prefer-stable]
+        include:
+          - laravel: 10.*
+            testbench: 8.*
+            carbon: ^2.63
+
+    name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
+
+    steps:
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
+          coverage: none
+
+      - name: Setup problem matchers
+        run: |
+          echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+          echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+      
+      - name: Setup Laravel
+        run: |
+          composer create-project laravel/laravel:^${{ matrix.laravel }} .
+          composer require laravel/jetstream:@dev --no-interaction --no-update
+          compsoser require headerx/laravel-jetstream-passport:@dev --no-interaction --no-update
+          composer config repositories.laravel-jetstream-passport '{"type": "path", "url": "laravel-jetstream-passport"}' --file composer.json
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          path: laravel-jetstream-passport
+
+      - name: Install Jetstream
+        run: |
+          composer update "laravel/jetstream" --prefer-dist --no-interaction --no-progress -W
+          php artisan jetstream:install livewire --api --dark --pest --no-interaction
+      
+      - name: Install Jetsream Passport
+        run: |
+          composer update "headerx/laravel-jetstream-passport" --prefer-dist --no-interaction --no-progress -W
+          php artisan jetstream-passport:install -v
+
+      - name: List Installed Dependencies
+        run: composer show -D
+      
+      - name: Install NPM dependencies
+        run: npm install
+
+      - name: Comple NPM assets
+        run: npm run dev
+
+      - name: Execute tests
+        run: vendor/bin/pest
+        env:
+          DB_CONNECTION: sqlite
+          DB_DATABASE: ":memory:"
