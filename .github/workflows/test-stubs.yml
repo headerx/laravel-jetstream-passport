@@ -19,11 +19,11 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         php: [8.3, 8.2]
-        laravel: [10.*]
+        laravel: [11.*]
         stability: [prefer-stable]
         include:
-          - laravel: 10.*
-            testbench: 8.*
+          - laravel: 11.*
+            testbench: 9.*
             carbon: ^2.63
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
@@ -59,7 +59,7 @@ jobs:
           composer update "laravel/jetstream" --prefer-dist --no-interaction --no-progress -W
           php artisan jetstream:install livewire --api --dark --pest --no-interaction
       
-      - name: Install Jetsream Passport
+      - name: Install Jetstream Passport
         run: |
           composer update "headerx/laravel-jetstream-passport" --prefer-dist --no-interaction --no-progress -W
           php artisan jetstream-passport:install -v
