@@ -1,10 +1,9 @@
-name: run-tests
+name: test-stubs
 
 on:
   push:
     paths:
       - '**.php'
-      - '.github/workflows/run-tests.yml'
       - '.github/workflows/test-stubs.yml'
       - 'phpunit.xml.dist'
       - 'composer.json'
