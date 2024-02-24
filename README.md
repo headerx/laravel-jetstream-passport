@@ -18,7 +18,7 @@ laravel new jetpass-app --stack=livewire --jet --dark --api --dev
 Using Composer
 
 ```bash
-composer require laravel/jetstream
+composer require "laravel/jetstream:^5.x-dev"
 ```
 
 ```bash
@@ -27,11 +27,11 @@ php artisan jetstream:install livewire --api --dark --pest
 
 See [Docs](https://jetstream.laravel.com/installation.html) for more info.
 
-1. Install this package:
+2. Install this package:
 
 
 ```bash
-composer require headerx/laravel-jetstream-passport
+composer require "headerx/laravel-jetstream-passport:^1.0"
 ```
 
 ```bash
