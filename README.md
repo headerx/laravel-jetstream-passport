@@ -7,7 +7,7 @@
 
 ## Installation
 
-1. Install Jetstream with Livewire:
+1. In a fresh laravel app, install Jetstream with Livewire.
 
 Using Laravel installer
 
