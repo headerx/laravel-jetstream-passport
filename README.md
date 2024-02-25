@@ -12,7 +12,7 @@
 Using Laravel installer
 
 ```bash
-laravel new jetpass-app --stack=livewire --jet --dark --api --dev
+laravel new jetpass-app --stack=livewire --jet --dark --api --pest --dev
 ```
 
 Using Composer
