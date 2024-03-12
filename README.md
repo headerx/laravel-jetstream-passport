@@ -12,13 +12,13 @@
 Using Laravel installer
 
 ```bash
-laravel new jetpass-app --stack=livewire --jet --dark --api --pest --dev
+laravel new jetpass-app --stack=livewire --jet --dark --api --pest
 ```
 
 Using Composer
 
 ```bash
-composer require "laravel/jetstream:^5.x-dev"
+composer require "laravel/jetstream:^5.0"
 ```
 
 ```bash
