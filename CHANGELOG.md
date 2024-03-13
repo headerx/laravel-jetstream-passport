@@ -2,6 +2,15 @@
 
 All notable changes to `laravel-jetstream-passport` will be documented in this file.
 
+## v1.0.2 - 2024-03-13
+
+### What's Changed
+
+* add authorize view by @inmanturbo in https://github.com/headerx/laravel-jetstream-passport/pull/22
+* Update README.md by @inmanturbo in https://github.com/headerx/laravel-jetstream-passport/pull/24
+
+**Full Changelog**: https://github.com/headerx/laravel-jetstream-passport/compare/v1.0.0...v1.0.2
+
 ## v1.0.1 - 2024-03-13
 
 ### What's Changed
