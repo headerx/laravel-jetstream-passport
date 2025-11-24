@@ -49,7 +49,7 @@ jobs:
           composer config repositories.laravel-jetstream-passport '{"type": "path", "url": "laravel-jetstream-passport"}' --file composer.json
 
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           path: laravel-jetstream-passport
 
